@@ -44,14 +44,6 @@ const MisPigeons = (props:any) => {
 
 
 
-    function mio() {
-        console.log('------------------------------------------------------------------------------')
-        router.push({ pathname: '/views/agregarpalomas', params: { nombreP, sexoP, colorP, numeroP } });
-        console.log(nombreP)
-
-    }
-
-
     return (
 
         <View style={style.cardContainer} >

@@ -4,8 +4,7 @@ import { addDoc, collection, getFirestore, query, getDocs, where, doc, updateDoc
 import { initializeApp } from 'firebase/app'
 import { firebaseConfig } from '../../firebase-config'
 import { useUsuarioRegistroApp } from "../../context/usuarioRegistro";
-import { Stack, router, useLocalSearchParams } from "expo-router";
-
+import { Stack, router, useLocalSearchParams, useNavigation } from "expo-router";
 
 
 
@@ -32,6 +31,7 @@ export default function RegistrarPaloma(props: string) {
     const [numero, setNumeroAnilla] = useState(numeroP);
     const { uidUsuario } = useUsuarioRegistroApp();
 
+
     function titulo() {
         if (nombreP === undefined) {
             return 'Agregar'
@@ -48,8 +48,8 @@ export default function RegistrarPaloma(props: string) {
             const docRef = doc(collection(db, 'Palomas'), querySnapshot1.docs[0].id);
             await updateDoc(docRef, { nombre, sexo, color });
             console.log('Objeto actualizado correctamente en Firestore');
-            
-        } catch (error) {
+            console.log('))))))))))))))))))))))))))))))))))))))))))))))))')
+            } catch (error) {
             console.error('Error al actualizar el objeto en Firestore:', error);
         }
     };
@@ -73,12 +73,23 @@ export default function RegistrarPaloma(props: string) {
                             numero
                         })
                 } else {
-                    actualizarObjetoFirestore();
+                    //actualizarObjetoFirestore();
+                    try {
+                        const q = query(collection(db, 'Palomas'), where('numero', '==', numeroP));
+                        const querySnapshot1 = await getDocs(q);
+                        const docRef = doc(collection(db, 'Palomas'), querySnapshot1.docs[0].id);
+                        await updateDoc(docRef, { nombre, sexo, color });
+                        console.log('Objeto actualizado correctamente en Firestore');
+                        console.log('))))))))))))))))))))))))))))))))))))))))))))))))')
+                        } catch (error) {
+                        console.error('Error al actualizar el objeto en Firestore:', error);
+                    }
                     
                 }
                 Alert.alert('Exito', 'Guardado con Exito')
                 
                 router.back();
+                
                 
                 
             }

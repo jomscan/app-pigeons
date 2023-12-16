@@ -27,15 +27,22 @@ export default function ListaPalomas() {
         try {
             const q = query(collection(db, 'Palomas'), where('uidUsuario', '==', uidUsuario));
             const querySnapshot1 = await getDocs(q);
-            setData(querySnapshot1.docs.map((doc) => doc.data()));
+            const items = querySnapshot1.docs.map((doc) => doc.data())
+            //setData(querySnapshot1.docs.map((doc) => doc.data()));
+            setData(items);
             console.log(querySnapshot1.docs.map((doc) => doc.data()))
-            console.log(data)
+            //console.log(data)
+
+
         } catch (error) {
             console.log(error)
         }
+        
         setLoading(false);
         setRefreshing(false);
+
     };
+
 
     useEffect(() => {
         fetchData();
@@ -92,9 +99,8 @@ export default function ListaPalomas() {
         );
     };
 
-    const actualizaPaloma = (nombreP:string, sexoP:string, colorP:string, numeroP:string) => {
-        router.push({ pathname: '/views/agregarpalomas', params: { nombreP, sexoP, colorP, numeroP}});
-        console.log('(((((((((((((((((((((((((((((((((((((((((((((((((((((((((')
+    const actualizaPaloma = (nombreP: string, sexoP: string, colorP: string, numeroP: string) => {
+        router.push({ pathname: '/views/agregarpalomas', params: { nombreP, sexoP, colorP, numeroP } });
     }
 
     return (
@@ -103,7 +109,7 @@ export default function ListaPalomas() {
             <View>
                 <FlatList data={data}
                     renderItem={({ item }) => {
-                        return <MisPigeons info={({ item })} delete={borrarPaloma} actualiza={actualizaPaloma}/>
+                        return <MisPigeons info={({ item })} delete={borrarPaloma} actualiza={actualizaPaloma} />
                     }}
                     keyExtractor={(Pigeons) => Pigeons.id + Pigeons.nombre}
                     refreshControl={
