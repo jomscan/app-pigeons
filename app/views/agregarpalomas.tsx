@@ -40,22 +40,6 @@ export default function RegistrarPaloma(props: string) {
         }
     }
 
-
-    const actualizarObjetoFirestore = async () => {
-        try {
-            const q = query(collection(db, 'Palomas'), where('numero', '==', numeroP));
-            const querySnapshot1 = await getDocs(q);
-            const docRef = doc(collection(db, 'Palomas'), querySnapshot1.docs[0].id);
-            await updateDoc(docRef, { nombre, sexo, color });
-            console.log('Objeto actualizado correctamente en Firestore');
-            } catch (error) {
-            console.error('Error al actualizar el objeto en Firestore:', error);
-        }
-    };
-
-
-
-
     const save = async () => {
         try {
             if (nombre === undefined || sexo === undefined || color === undefined || numero === undefined) {
@@ -72,24 +56,24 @@ export default function RegistrarPaloma(props: string) {
                             numero
                         })
                 } else {
-                    //actualizarObjetoFirestore();
+
                     try {
                         const q = query(collection(db, 'Palomas'), where('numero', '==', numeroP));
                         const querySnapshot1 = await getDocs(q);
                         const docRef = doc(collection(db, 'Palomas'), querySnapshot1.docs[0].id);
                         await updateDoc(docRef, { nombre, sexo, color });
                         console.log('Objeto actualizado correctamente en Firestore');
-                        } catch (error) {
+                    } catch (error) {
                         console.error('Error al actualizar el objeto en Firestore:', error);
                     }
-                    
+
                 }
                 Alert.alert('Exito', 'Guardado con Exito')
-                
+
                 router.back();
-                
-                
-                
+
+
+
             }
         } catch (error) {
             console.log(error)
