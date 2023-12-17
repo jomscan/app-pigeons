@@ -6,7 +6,7 @@ import { router } from "expo-router";
 
 export default function Login() {
 
-    //creamos la variable de estado
+    
    
     const { nombreUsuario,  setAutorizado } = useUsuarioRegistroApp();
 

@@ -62,8 +62,6 @@ export default function TabOneScreen() {
     
     <View style={styles.container}>
       <Header label="Legendary Pigeons" />
-      
-      
       <FlatList data={Pigeons}
                 renderItem={({item}) =>{
                   

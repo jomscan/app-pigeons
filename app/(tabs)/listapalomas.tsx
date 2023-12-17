@@ -28,19 +28,12 @@ export default function ListaPalomas() {
             const q = query(collection(db, 'Palomas'), where('uidUsuario', '==', uidUsuario));
             const querySnapshot1 = await getDocs(q);
             const items = querySnapshot1.docs.map((doc) => doc.data())
-            //setData(querySnapshot1.docs.map((doc) => doc.data()));
             setData(items);
-            console.log(querySnapshot1.docs.map((doc) => doc.data()))
-            //console.log(data)
-
-
         } catch (error) {
             console.log(error)
         }
-        
         setLoading(false);
         setRefreshing(false);
-
     };
 
 
@@ -63,7 +56,6 @@ export default function ListaPalomas() {
         router.push("/views/agregarpalomas");
     }
 
-    //-------------------------------
     const borrarPaloma = async (fieldName: string, value: string) => {
         try {
             const collectionRef = collection(db, 'Palomas');
@@ -71,16 +63,12 @@ export default function ListaPalomas() {
             const querySnapshot = await getDocs(q);
 
             if (!querySnapshot.empty) {
-                // Solo debería haber un documento con el valor dado, pero iteramos por si acaso
                 querySnapshot.forEach(async (doc) => {
                     await deleteDoc(doc.ref);
                     Alert.alert('Eliminar Palomas', 'Paloma eliminada correctamente')
                     console.log(`Elemento con ${fieldName} ${value} eliminado con éxito.`);
                     fetchData();
                 });
-
-                // Puedes actualizar el estado local o realizar otras acciones después de eliminar
-
             } else {
                 console.log(`No se encontró ningún documento con ${fieldName} ${value}.`);
             }

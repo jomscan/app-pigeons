@@ -10,7 +10,7 @@ const Header = ({label}:{label:string}) => {
     );
 };
 
-const deviceWidth = Dimensions.get('window').width;                    //Guarda en una constante el ancho de pantalla del disposivo que los este usando
+const deviceWidth = Dimensions.get('window').width;  
 
 const style = StyleSheet.create({
     container: {

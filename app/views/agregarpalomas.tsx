@@ -48,7 +48,6 @@ export default function RegistrarPaloma(props: string) {
             const docRef = doc(collection(db, 'Palomas'), querySnapshot1.docs[0].id);
             await updateDoc(docRef, { nombre, sexo, color });
             console.log('Objeto actualizado correctamente en Firestore');
-            console.log('))))))))))))))))))))))))))))))))))))))))))))))))')
             } catch (error) {
             console.error('Error al actualizar el objeto en Firestore:', error);
         }
@@ -80,7 +79,6 @@ export default function RegistrarPaloma(props: string) {
                         const docRef = doc(collection(db, 'Palomas'), querySnapshot1.docs[0].id);
                         await updateDoc(docRef, { nombre, sexo, color });
                         console.log('Objeto actualizado correctamente en Firestore');
-                        console.log('))))))))))))))))))))))))))))))))))))))))))))))))')
                         } catch (error) {
                         console.error('Error al actualizar el objeto en Firestore:', error);
                     }
